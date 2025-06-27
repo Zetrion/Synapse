@@ -38,37 +38,45 @@ class RevisitPage extends StatelessWidget {
                 separatorBuilder: (context, index) => const SizedBox(width: 24),
                 itemBuilder: (context, index) {
                   final doctor = doctors[index];
-                  return Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 32,
-                        backgroundColor: Colors.blue[100],
-                        child: doctor.imageUrl == null
-                            ? const Icon(Icons.person, size: 36, color: Colors.blue)
-                            : ClipOval(
-                                child: Image.network(
-                                  doctor.imageUrl!,
-                                  width: 64,
-                                  height: 64,
-                                  fit: BoxFit.cover,
+                  return InkWell(
+                    borderRadius: BorderRadius.circular(12),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Tapped: ${doctor.name}')),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 32,
+                          backgroundColor: Colors.blue[100],
+                          child: doctor.imageUrl == null
+                              ? const Icon(Icons.person, size: 36, color: Colors.blue)
+                              : ClipOval(
+                                  child: Image.network(
+                                    doctor.imageUrl!,
+                                    width: 64,
+                                    height: 64,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                      ),
-                      const SizedBox(height: 8),
-                      SizedBox(
-                        width: 70,
-                        child: Text(
-                          doctor.name,
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                        ),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: 70,
+                          child: Text(
+                            doctor.name,
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 },
               ),

@@ -112,46 +112,55 @@ class _FeaturesPageState extends State<FeaturesPage> {
 
 class _FeatureCard extends StatelessWidget {
   final _FeatureItem feature;
+  final VoidCallback? onTap;
 
-  const _FeatureCard({required this.feature});
+  const _FeatureCard({required this.feature, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        CircleAvatar(
-          radius: 28,
-          backgroundColor: Colors.grey[200],
-          child: Icon(
-            feature.icon,
-            size: 28,
-            color: feature.iconColor,
+    return InkWell(
+      borderRadius: BorderRadius.circular(12),
+      onTap: onTap ?? () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Tapped: ${feature.title}')),
+        );
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            radius: 28,
+            backgroundColor: Colors.grey[200],
+            child: Icon(
+              feature.icon,
+              size: 28,
+              color: feature.iconColor,
+            ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          feature.title,
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 13,
-          ),
-        ),
-        if (feature.subtitle.isNotEmpty)
+          const SizedBox(height: 8),
           Text(
-            feature.subtitle,
+            feature.title,
             textAlign: TextAlign.center,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-              fontSize: 11,
-              color: Colors.black87,
+              fontWeight: FontWeight.bold,
+              fontSize: 13,
             ),
           ),
-      ],
+          if (feature.subtitle.isNotEmpty)
+            Text(
+              feature.subtitle,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 11,
+                color: Colors.black87,
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
