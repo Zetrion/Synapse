@@ -26,8 +26,8 @@ class CustomDrawer extends StatelessWidget {
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
-              children: const [
-                DrawerHeader(
+              children: [
+                const DrawerHeader(
                   decoration: BoxDecoration(
                     color: Colors.blue,
                   ),
@@ -46,27 +46,43 @@ class CustomDrawer extends StatelessWidget {
                       ),
                       SizedBox(height: 4),
                       Text(
-                        'ID: 123456', // Replace with actual ID if needed
+                        'ID: 123456',
                         style: TextStyle(color: Colors.white70, fontSize: 14),
                       ),
                     ],
                   ),
                 ),
                 ListTile(
-                  leading: Icon(Icons.home),
-                  title: Text('Home'),
+                  leading: const Icon(Icons.home),
+                  title: const Text('Home'),
+                  onTap: () {
+                    // Add navigation or action here
+                    Navigator.of(context).pop();
+                  },
                 ),
                 ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('profile'),
+                  leading: const Icon(Icons.person),
+                  title: const Text('Profile'),
+                  onTap: () {
+                    // Add navigation or action here
+                    Navigator.of(context).pop();
+                  },
                 ),
                 ListTile(
-                  leading: Icon(Icons.settings),
-                  title: Text('Settings'),
+                  leading: const Icon(Icons.settings),
+                  title: const Text('Settings'),
+                  onTap: () {
+                    // Add navigation or action here
+                    Navigator.of(context).pop();
+                  },
                 ),
                 ListTile(
-                  leading: Icon(Icons.info),
-                  title: Text('About'),
+                  leading: const Icon(Icons.info),
+                  title: const Text('About'),
+                  onTap: () {
+                    // Add navigation or action here
+                    Navigator.of(context).pop();
+                  },
                 ),
               ],
             ),
@@ -74,10 +90,10 @@ class CustomDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ListTile(
-              leading: Icon(Icons.logout, color: Colors.red),
-              title: Text('Logout', style: TextStyle(color: Colors.red)),
+              leading: const Icon(Icons.logout, color: Colors.red),
+              title: const Text('Logout', style: TextStyle(color: Colors.red)),
               onTap: () {
-                // Add your logout logic here
+                // Add logout logic here
                 Navigator.of(context).pop();
               },
             ),
